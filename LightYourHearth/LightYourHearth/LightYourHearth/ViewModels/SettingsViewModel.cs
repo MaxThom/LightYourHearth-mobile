@@ -1,5 +1,6 @@
 ﻿using LightYourHearth.Models;
 using LightYourHearth.Services;
+using LightYourHearth.Views;
 
 using System;
 using System.Collections.ObjectModel;
@@ -79,8 +80,17 @@ namespace LightYourHearth.ViewModels
 
             Console.WriteLine($"{item.Id}__{item.Text}__{item.Description}");
 
-            // This will push the ItemDetailPage onto the navigation stack
-            //await Shell.Current.GoToAsync($"{nameof(ItemDetailPage)}?{nameof(ItemDetailViewModel.ItemId)}={item.Id}");
+            // This will push the page onto the navigation stack
+            switch (item.Id)
+            {
+                case "0":
+                    await Shell.Current.GoToAsync($"{nameof(BluetoothConfigurationPage)}");
+                    break;
+
+                case "1":
+                    await Shell.Current.GoToAsync($"{nameof(LedConfigurationPage)}");
+                    break;
+            }
         }
     }
 }
