@@ -1,19 +1,14 @@
-﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using LightYourHearth.Services;
-using LightYourHearth.Views;
+﻿using Xamarin.Forms;
 
 namespace LightYourHearth
 {
     public partial class App : Application
     {
-
         public App()
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
