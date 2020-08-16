@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using LightYourHearth.Services;
+
+using Xamarin.Forms;
 
 namespace LightYourHearth
 {
@@ -8,7 +10,9 @@ namespace LightYourHearth
         {
             InitializeComponent();
 
-            //DependencyService.Register<MockDataStore>();
+            DependencyService.Register<IBluetoothComm, BluetoothSPDComm>();
+            DependencyService.Register<SettingsService>();
+
             MainPage = new AppShell();
         }
 

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LightYourHearth.Views.SettingsPage"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
+             xmlns:model="clr-namespace:LightYourHearth.Models"
              Title="{Binding Title}">
 
     <ContentPage.BindingContext>
@@ -14,4 +15,32 @@
             <Color x:Key="Accent">#96d1ff</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <!--RefreshView x:DataType="vm:SettingsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
+    <CollectionView x:Name="ConfigurationListView"
+                ItemsSource="{Binding ConfigurationItems}"
+                SelectionMode="None">
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout Padding="10" x:DataType="model:ConfigurationItem">
+                    <Label Text="{Binding Text}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemTextStyle}"
+                            FontSize="16" />
+                    <Label Text="{Binding Description}"
+                            LineBreakMode="NoWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="13" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer
+                                NumberOfTapsRequired="1"
+                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:SettingsViewModel}}, Path=ItemTapped}"
+                                CommandParameter="{Binding .}">
+                        </TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+    <!--</RefreshView>-->
 </ContentPage>
