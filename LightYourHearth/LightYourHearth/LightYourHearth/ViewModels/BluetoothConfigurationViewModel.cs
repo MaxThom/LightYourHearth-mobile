@@ -1,7 +1,8 @@
 ﻿using Android.Bluetooth;
 
 using LightYourHearth.Services;
-
+using Plugin.Toast;
+using Plugin.Toast.Abstractions;
 using System;
 using System.Collections.ObjectModel;
 
@@ -49,7 +50,11 @@ namespace LightYourHearth.ViewModels
 
             Console.WriteLine($"{item.BluetoothDevice.Name}__{item.BluetoothDevice.Address}__{item.BluetoothDevice.BondState}");
 
-            await _bluetoothComm.CreateBluetoothConnectionAsync(item.BluetoothDevice);
+            if (await _bluetoothComm.CreateBluetoothConnectionAsync(item.BluetoothDevice))
+                CrossToastPopUp.Current.ShowToastMessage("Device connected", ToastLength.Long);
+            else
+                CrossToastPopUp.Current.ShowToastMessage("Device disconnected", ToastLength.Long);
+
             ExecuteLoadItemsCommand();
         }
 

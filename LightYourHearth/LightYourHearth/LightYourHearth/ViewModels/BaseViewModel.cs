@@ -1,5 +1,8 @@
 ﻿using LightYourHearth.Services;
 
+using Plugin.Toast;
+using Plugin.Toast.Abstractions;
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,9 +23,22 @@ namespace LightYourHearth.ViewModels
         public BaseViewModel()
         {
             BluetoothConnectionIcon = _bluetoothComm.SelectedDevice != null ? "plug_in.png" : "plug_out.png";
-            _bluetoothComm.OnBluetoothConnected += (object sender, EventArgs e) => BluetoothConnectionIcon = "plug_in.png";
-            _bluetoothComm.OnBluetoothDisconnected += (object sender, EventArgs e) => BluetoothConnectionIcon = "plug_out.png";
+            _bluetoothComm.OnBluetoothConnected += _bluetoothComm_OnBluetoothConnected;
+            _bluetoothComm.OnBluetoothDisconnected += _bluetoothComm_OnBluetoothDisconnected;
+
             BluetoothConnectionIconCommand = new Command(async () => await ConnectToLastDeviceAsync());
+        }
+
+        private void _bluetoothComm_OnBluetoothDisconnected(object sender, EventArgs e)
+        {
+            BluetoothConnectionIcon = "plug_out.png";
+            CrossToastPopUp.Current.ShowToastMessage("Device disconnected", ToastLength.Long);
+        }
+
+        private void _bluetoothComm_OnBluetoothConnected(object sender, EventArgs e)
+        {
+            BluetoothConnectionIcon = "plug_in.png";
+            CrossToastPopUp.Current.ShowToastMessage("Device connected", ToastLength.Long);
         }
 
         #region Properties
@@ -97,8 +113,8 @@ namespace LightYourHearth.ViewModels
 
         public void Dispose()
         {
-            _bluetoothComm.OnBluetoothConnected -= (object sender, EventArgs e) => BluetoothConnectionIcon = "plug_in.png";
-            _bluetoothComm.OnBluetoothDisconnected -= (object sender, EventArgs e) => BluetoothConnectionIcon = "plug_out.png";
+            _bluetoothComm.OnBluetoothConnected -= _bluetoothComm_OnBluetoothConnected;
+            _bluetoothComm.OnBluetoothDisconnected -= _bluetoothComm_OnBluetoothDisconnected;
         }
     }
 }
