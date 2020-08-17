@@ -26,6 +26,9 @@ namespace LightYourHearth.ViewModels
             LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
             ItemTapped = new Command<BluetoothDeviceDisplay>(OnDeviceSelectedAsync);
 
+            _bluetoothComm.OnBluetoothConnected += (object sender, EventArgs e) => ExecuteLoadItemsCommand();
+            _bluetoothComm.OnBluetoothDisconnected += (object sender, EventArgs e) => ExecuteLoadItemsCommand();
+
             ExecuteLoadItemsCommand();
         }
 

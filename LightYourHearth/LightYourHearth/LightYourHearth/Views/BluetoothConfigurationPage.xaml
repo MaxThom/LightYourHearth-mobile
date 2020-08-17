@@ -12,6 +12,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Plug In"
+                 IconImageSource="{Binding BluetoothConnectionIcon}"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding BluetoothConnectionIconCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <RefreshView Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">
             <ListView x:Name="BluetoothDevicesListView" ItemsSource="{Binding BluetoothDevices}" SelectedItem="{Binding SelectedDevice}"

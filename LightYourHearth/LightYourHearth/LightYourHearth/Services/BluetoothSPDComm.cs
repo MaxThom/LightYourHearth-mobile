@@ -27,6 +27,10 @@ namespace LightYourHearth.Services
 
         public event EventHandler<string> OnMessageReceived;
 
+        public event EventHandler OnBluetoothConnected;
+
+        public event EventHandler OnBluetoothDisconnected;
+
         public BluetoothSPDComm()
         {
             test++;
@@ -58,6 +62,8 @@ namespace LightYourHearth.Services
                 {
                     SelectedDevice = device;
                     Console.WriteLine("Connection successful!");
+                    OnBluetoothConnected?.Invoke(this, null);
+
                     inStream = (InputStreamInvoker)socket.InputStream;
                     outStream = (OutputStreamInvoker)socket.OutputStream;
                     bluetoothListen = new Task(() => ListenAsync());
@@ -73,11 +79,13 @@ namespace LightYourHearth.Services
             Console.WriteLine("Connection failed!");
             SelectedDevice = null;
             IsDeviceListening = false;
+            socket.Close();
+            OnBluetoothDisconnected?.Invoke(this, null);
 
             return false;
         }
 
-        public async Task StopBluetoothConnectionAsync()
+        public async Task CloseBluetoothConnectionAsync()
         {
             IsDeviceListening = false;
             bluetoothListen.Wait();
@@ -85,7 +93,9 @@ namespace LightYourHearth.Services
             inStream?.Close();
             outStream?.Close();
             socket?.Close();
+            SelectedDevice = null;
             Console.WriteLine("Bluetooth connection closed!");
+            OnBluetoothDisconnected?.Invoke(this, null);
         }
 
         public async void SendMessageAsync(string message)

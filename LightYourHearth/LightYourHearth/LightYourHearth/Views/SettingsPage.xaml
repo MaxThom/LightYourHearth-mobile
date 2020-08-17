@@ -16,6 +16,14 @@
         </ResourceDictionary>
     </ContentPage.Resources>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Plug In"
+                 IconImageSource="{Binding BluetoothConnectionIcon}"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding BluetoothConnectionIconCommand}" />
+    </ContentPage.ToolbarItems>
+
     <!--RefreshView x:DataType="vm:SettingsViewModel" Command="{Binding LoadItemsCommand}" IsRefreshing="{Binding IsBusy, Mode=TwoWay}">-->
     <CollectionView x:Name="ConfigurationListView"
                 ItemsSource="{Binding ConfigurationItems}"

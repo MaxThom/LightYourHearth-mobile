@@ -20,8 +20,8 @@ namespace LightYourHearth.Services
             BluetoothConfiguration = new BluetoothConfiguration()
             {
                 Id = "0",
-                DeviceName = "raspberrypie",
-                DeviceMacAddress = "02:XE:34:BD"
+                DeviceName = "raspberrypi",
+                DeviceMacAddress = "DC:A6:32:68:08:7C"
             };
             LedConfiguration = new LedConfiguration()
             {

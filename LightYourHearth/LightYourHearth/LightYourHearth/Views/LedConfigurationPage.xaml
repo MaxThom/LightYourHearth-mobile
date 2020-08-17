@@ -5,6 +5,19 @@
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
              xmlns:model="clr-namespace:LightYourHearth.Models"
              Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vm:LedConfigurationViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Plug In"
+                 IconImageSource="{Binding BluetoothConnectionIcon}"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding BluetoothConnectionIconCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Led Configuration!"

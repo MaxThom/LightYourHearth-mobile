@@ -9,6 +9,14 @@
         <vm:AnimationViewModel />
     </ContentPage.BindingContext>
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Plug In"
+                 IconImageSource="{Binding BluetoothConnectionIcon}"
+                 Order="Primary"
+                 Priority="0"
+                 Command="{Binding BluetoothConnectionIconCommand}" />
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Resources>
         <ResourceDictionary>
             <Color x:Key="Accent">#96d1ff</Color>
