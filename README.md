@@ -51,6 +51,9 @@ MIT
 - [x] APP - Add bluetooth client connection
 - [ ] APP/RPI - Add handshake when initializing connections to discover servers capabilities (animations, etc)
 - [ ] APP - Create a dynamic UI for animations
+- [ ] RPI - Add two physicals buttons. One to activate bluetooth discovery, one for led on and off.
+- [ ] RPI - Create a better wiring solution
+- [ ] RPI - Create a box for all the electronics with power input and ledstrip input
 
 *September 2020*
 - [ ] APP - Create playlist for animations
