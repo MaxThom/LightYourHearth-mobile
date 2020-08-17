@@ -13,7 +13,7 @@ namespace LightYourHearth.Services
 
         event EventHandler<string> OnMessageReceived;
 
-        Task<bool> CreateBluetoothConnectionAsync();
+        Task<bool> CreateBluetoothConnectionAsync(BluetoothDevice device);
 
         List<BluetoothDevice> GetPairedDevices();
 

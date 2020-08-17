@@ -47,15 +47,16 @@ namespace LightYourHearth.Services
             return new List<BluetoothDevice>();
         }
 
-        public async Task<bool> CreateBluetoothConnectionAsync()
+        public async Task<bool> CreateBluetoothConnectionAsync(BluetoothDevice device)
         {
             try
             {
-                socket = SelectedDevice.CreateRfcommSocketToServiceRecord(UUID.FromString(TARGET_UUID));
+                socket = device.CreateRfcommSocketToServiceRecord(UUID.FromString(TARGET_UUID));
                 await socket.ConnectAsync();
 
                 if (socket != null && socket.IsConnected)
                 {
+                    SelectedDevice = device;
                     Console.WriteLine("Connection successful!");
                     inStream = (InputStreamInvoker)socket.InputStream;
                     outStream = (OutputStreamInvoker)socket.OutputStream;
