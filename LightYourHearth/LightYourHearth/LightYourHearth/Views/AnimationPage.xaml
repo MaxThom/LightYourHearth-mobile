@@ -3,11 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LightYourHearth.Views.AnimationPage"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
+             xmlns:model="clr-namespace:LightYourHearth.Models"
              Title="{Binding Title}">
-
-    <ContentPage.BindingContext>
-        <vm:AnimationViewModel />
-    </ContentPage.BindingContext>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Plug In"
@@ -22,4 +19,36 @@
             <Color x:Key="Accent">#96d1ff</Color>
         </ResourceDictionary>
     </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <FlexLayout BindableLayout.ItemsSource="{Binding AnimationList}"
+            Direction="Row"
+            Padding="10"
+            AlignItems="Start"
+            AlignContent="Start"
+            JustifyContent="Start"
+            Wrap="Wrap">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Padding="10" Margin="10,10,10,10" x:DataType="model:LedAnimation" BackgroundColor="{StaticResource Primary}"
+                      FlexLayout.Basis="{OnIdiom Phone='50%', Tablet='33%'}"
+                      FlexLayout.AlignSelf="Start">
+                        <!--<Button Text="{Binding DisplayName}" Image="tab_about.png" ContentLayout="Top,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" /> -->
+                        <Image Source="tab_about.png" />
+                        <Label Text="{Binding DisplayName}"
+                               FontSize="13"
+                               LineBreakMode="WordWrap"
+                               HorizontalOptions="Center"
+                               TextColor="White" />
+
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationCommand}"
+                                                  CommandParameter="{Binding .}" />
+                        </StackLayout.GestureRecognizers>
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+    </ContentPage.Content>
 </ContentPage>

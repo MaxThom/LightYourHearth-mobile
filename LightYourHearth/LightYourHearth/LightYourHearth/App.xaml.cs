@@ -12,6 +12,7 @@ namespace LightYourHearth
 
             DependencyService.Register<IBluetoothComm, BluetoothSPDComm>();
             DependencyService.Register<SettingsService>();
+            DependencyService.Register<ServerService>();
 
             MainPage = new AppShell();
         }
