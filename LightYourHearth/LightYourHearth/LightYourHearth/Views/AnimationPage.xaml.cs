@@ -1,4 +1,6 @@
-﻿using LightYourHearth.ViewModels;
+﻿using DLToolkit.Forms.Controls;
+
+using LightYourHearth.ViewModels;
 
 using Xamarin.Forms;
 
@@ -11,6 +13,7 @@ namespace LightYourHearth.Views
         public AnimationPage()
         {
             InitializeComponent();
+            FlowListView.Init();
             vm = new AnimationViewModel();
             BindingContext = vm;
         }

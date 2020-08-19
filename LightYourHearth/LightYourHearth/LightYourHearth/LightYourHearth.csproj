@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="DLToolkit.Forms.Controls.FlowListView" Version="2.0.11" />
     <PackageReference Include="Plugin.Toast" Version="2.1.2" />
     <PackageReference Include="Xamarin.Forms" Version="4.8.0.1269" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />
@@ -25,6 +26,9 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Views\BluetoothConfigurationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\EditAnimationPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\LedConfigurationPage.xaml">

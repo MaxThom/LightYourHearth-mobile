@@ -4,6 +4,7 @@
              x:Class="LightYourHearth.Views.AnimationPage"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
              xmlns:model="clr-namespace:LightYourHearth.Models"
+             xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
              Title="{Binding Title}">
 
     <ContentPage.ToolbarItems>
@@ -21,34 +22,27 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <FlexLayout BindableLayout.ItemsSource="{Binding AnimationList}"
-            Direction="Row"
-            Padding="10"
-            AlignItems="Start"
-            AlignContent="Start"
-            JustifyContent="Start"
-            Wrap="Wrap">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Padding="10" Margin="10,10,10,10" x:DataType="model:LedAnimation" BackgroundColor="{StaticResource Primary}"
-                      FlexLayout.Basis="{OnIdiom Phone='50%', Tablet='33%'}"
-                      FlexLayout.AlignSelf="Start">
-                        <!--<Button Text="{Binding DisplayName}" Image="tab_about.png" ContentLayout="Top,0" HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand" /> -->
-                        <Image Source="tab_about.png" />
-                        <Label Text="{Binding DisplayName}"
-                               FontSize="13"
-                               LineBreakMode="WordWrap"
-                               HorizontalOptions="Center"
-                               TextColor="White" />
+        <flv:FlowListView x:Name="flowListView" FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="True"
+	        FlowItemTappedCommand="{Binding AnimationCommand}" FlowLastTappedItem="{Binding LastTappedItem}"
+	        FlowItemsSource="{Binding AnimationList}">
 
-                        <StackLayout.GestureRecognizers>
-                            <TapGestureRecognizer NumberOfTapsRequired="1"
-                                                  Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationCommand}"
-                                                  CommandParameter="{Binding .}" />
-                        </StackLayout.GestureRecognizers>
-                    </StackLayout>
+            <flv:FlowListView.FlowColumnTemplate>
+                <DataTemplate>
+                    <Grid  Padding="5">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Button Grid.Row="0" Grid.RowSpan="2" Text="{Binding DisplayName}" Image="tab_about.png" ContentLayout="Top,0" Margin="0,0,0,-6"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationCommand}"
+                            CommandParameter="{Binding .}" />
+                        <Button Grid.Row="2" Text="Edit" BackgroundColor="DarkGray" TextColor="Black" HeightRequest="40" MinimumHeightRequest="40" FontSize="Micro"
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationEditCommand}"
+                            CommandParameter="{Binding .}" />
+                    </Grid>
                 </DataTemplate>
-            </BindableLayout.ItemTemplate>
-        </FlexLayout>
+            </flv:FlowListView.FlowColumnTemplate>
+        </flv:FlowListView>
     </ContentPage.Content>
 </ContentPage>

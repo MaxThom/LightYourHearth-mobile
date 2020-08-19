@@ -1,5 +1,6 @@
 ﻿using LightYourHearth.Models;
 using LightYourHearth.Services;
+using LightYourHearth.Views;
 
 using Plugin.Toast;
 using Plugin.Toast.Abstractions;
@@ -20,12 +21,14 @@ namespace LightYourHearth.ViewModels
         public ObservableCollection<LedAnimation> AnimationList { get; }
 
         public Command<LedAnimation> AnimationCommand { get; }
+        public Command<LedAnimation> AnimationEditCommand { get; }
 
         public AnimationViewModel()
         {
             Title = "Animation";
             AnimationList = new ObservableCollection<LedAnimation>();
             AnimationCommand = new Command<LedAnimation>(OnLedAnimationTap);
+            AnimationEditCommand = new Command<LedAnimation>(OnLedAnimationEditTap);
 
             _serverService.AnimationCapabilities.ForEach(x => AnimationList.Add(x));
         }
@@ -35,7 +38,7 @@ namespace LightYourHearth.ViewModels
             if (animation == null)
                 return;
 
-            Console.WriteLine(animation.Name);
+            Console.WriteLine($"VM:{animation.Name}");
             if (_bluetoothComm.IsDeviceListening)
             {
                 _bluetoothComm.SendMessageAsync(animation.Name);
@@ -43,7 +46,11 @@ namespace LightYourHearth.ViewModels
             }
             else
                 CrossToastPopUp.Current.ShowToastMessage("Device not connected.", ToastLength.Short);
+        }
 
+        public async void OnLedAnimationEditTap(LedAnimation animation)
+        {
+            await Shell.Current.GoToAsync($"{nameof(EditAnimationPage)}?animation={animation.Name}");
         }
     }
 }

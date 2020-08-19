@@ -11,6 +11,7 @@ namespace LightYourHearth
             InitializeComponent();
             Routing.RegisterRoute(nameof(BluetoothConfigurationPage), typeof(BluetoothConfigurationPage));
             Routing.RegisterRoute(nameof(LedConfigurationPage), typeof(LedConfigurationPage));
+            Routing.RegisterRoute(nameof(EditAnimationPage), typeof(EditAnimationPage));
         }
     }
 }
