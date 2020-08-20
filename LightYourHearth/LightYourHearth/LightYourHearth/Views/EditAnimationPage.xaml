@@ -1,137 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="LightYourHearth.Views.EditAnimationPage"
-             xmlns:xfsegmentedcontrol="clr-namespace:Udara.Plugin.XFColorPickerControl;assembly=Udara.Plugin.XFColorPickerControl"
+             x:Class="LightYourHearth.Views.EditAnimationPage"            
              xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
              xmlns:model="clr-namespace:LightYourHearth.Models"
              Title="{Binding Title}">
     <ContentPage.Content>
-
-        <StackLayout x:Name="TopLayout">
-            <!-- <StackLayout Orientation="Horizontal">
-                <Label Text="{Binding PickedColorHex}"
-                VerticalOptions="FillAndExpand"
-                HorizontalOptions="Start"
-                TextColor="Black"
-                BackgroundColor="{Binding PickedColor}" />
-
-                <xfsegmentedcontrol:ColorPicker
-	            x:Name="ColorPicker"
-                Margin="-6,0,0,0"
-                PickedColorChanged="ColorPicker_PickedColorChanged"
-	            ColorFlowDirection="Horizontal"
-	            ColorSpectrumStyle="TintToHueToShadeStyle"
-	            HeightRequest="200"
-	            HorizontalOptions="FillAndExpand"
-	            PointerRingBorderUnits="0.3"
-	            PointerRingDiameterUnits="0.7"
-	            PointerRingPositionXUnits="0.6"
-	            PointerRingPositionYUnits="0.6">
-                    <xfsegmentedcontrol:ColorPicker.BaseColorList>
-                        <x:Array Type="{x:Type x:String}">
-                            <x:String>#ff0000</x:String>
-                            <x:String>#ffff00</x:String>
-                            <x:String>#00ff00</x:String>
-                            <x:String>#00ffff</x:String>
-                            <x:String>#0000ff</x:String>
-                            <x:String>#ff00ff</x:String>
-                            <x:String>#ff0000</x:String>
-                        </x:Array>
-                    </xfsegmentedcontrol:ColorPicker.BaseColorList>
-                </xfsegmentedcontrol:ColorPicker>
-        </StackLayout>
-            <StackLayout>
-                <Label Text="Color"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="StartAndExpand"
-                TextColor="Black"
-                FontAttributes="Bold"
-                Padding="5" />
-                <Label Text="{Binding PickedColorHex}"
-                VerticalOptions="StartAndExpand"
-                HorizontalOptions="FillAndExpand"
-                VerticalTextAlignment="Center"
-                HorizontalTextAlignment="Center"
-                TextColor="Black"
-                HeightRequest="50"
-                BackgroundColor="{Binding PickedColor}" />
-                <colorpicker:ColorCircle x:Name="ColorWheel"
-                SelectedColor="{Binding PickedColor, Mode=TwoWay}"
-                Padding="5,-10,5,5"
-                CascadeInputTransparent="True"
-                HeightRequest="250" />
-                WheelBackgroundColor="{Binding PickedColor}"
-            <BoxView BackgroundColor="Black" HeightRequest="1" />
-        </StackLayout>-->
-            <ScrollView>
-                <StackLayout x:Name="ParamLayout">
-                    <!--<StackLayout>
-                        <StackLayout Orientation="Horizontal" Padding="5,0,5,0">
-                            <Label Text="Wait"
-                                VerticalOptions="Start"
-                                HorizontalOptions="Start"
-                                TextColor="Black"
-                                FontAttributes="Bold" />
-                            <Label Text="50"
-                                VerticalOptions="StartAndExpand"
-                                HorizontalOptions="StartAndExpand"
-                                Padding="10,1,0,0"
-                                VerticalTextAlignment="Center"
-                                HorizontalTextAlignment="Center"
-                                TextColor="Black" />
-                        </StackLayout>
-                        <Slider Maximum="360" HorizontalOptions="FillAndExpand"
-                                ThumbColor="DodgerBlue"
-                                MinimumTrackColor="DodgerBlue"
-                                MaximumTrackColor="Gray" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" />
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" Padding="5,0,5,0">
-                            <Label Text="Step"
-                                VerticalOptions="Start"
-                                HorizontalOptions="Start"
-                                TextColor="Black"
-                                FontAttributes="Bold" />
-                            <Label Text="50"
-                                VerticalOptions="StartAndExpand"
-                                HorizontalOptions="StartAndExpand"
-                                Padding="10,1,0,0"
-                                VerticalTextAlignment="Center"
-                                HorizontalTextAlignment="Center"
-                                TextColor="Black" />
-                        </StackLayout>
-                        <Slider Maximum="360" HorizontalOptions="FillAndExpand"
-                                ThumbColor="DodgerBlue"
-                                MinimumTrackColor="DodgerBlue"
-                                MaximumTrackColor="Gray" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" />
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal" Padding="5,0,5,0">
-                            <Label Text="Repeat"
-                                VerticalOptions="Start"
-                                HorizontalOptions="Start"
-                                TextColor="Black"
-                                FontAttributes="Bold" />
-                            <Label Text="50"
-                                VerticalOptions="StartAndExpand"
-                                HorizontalOptions="StartAndExpand"
-                                Padding="10,1,0,0"
-                                VerticalTextAlignment="Center"
-                                HorizontalTextAlignment="Center"
-                                TextColor="Black" />
-                        </StackLayout>
-                        <Slider Maximum="360" HorizontalOptions="FillAndExpand"
-                            ThumbColor="DodgerBlue"
-                            MinimumTrackColor="DodgerBlue"
-                            MaximumTrackColor="Gray" />
-                    </StackLayout>
-                    <BoxView BackgroundColor="Black" HeightRequest="1" />-->
-                </StackLayout>
-            </ScrollView>
-        </StackLayout>
+        <ScrollView>
+            <StackLayout x:Name="ParamLayout" Padding="0,5,0,0">
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

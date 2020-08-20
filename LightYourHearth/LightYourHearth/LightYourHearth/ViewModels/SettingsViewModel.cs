@@ -4,7 +4,6 @@ using LightYourHearth.Views;
 
 using System;
 using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 using Xamarin.Forms;
 
@@ -18,21 +17,19 @@ namespace LightYourHearth.ViewModels
 
         public ObservableCollection<ConfigurationItem> ConfigurationItems { get; }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
         public Command<ConfigurationItem> ItemTapped { get; }
 
         public SettingsViewModel()
         {
             Title = "Settings";
             ConfigurationItems = new ObservableCollection<ConfigurationItem>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
             ItemTapped = new Command<ConfigurationItem>(OnItemSelected);
-            AddItemCommand = new Command(OnAddItem);
 
             ExecuteLoadItemsCommand();
         }
 
-        private async Task ExecuteLoadItemsCommand()
+        private void ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
@@ -66,11 +63,6 @@ namespace LightYourHearth.ViewModels
                 SetProperty(ref _selectedItem, value);
                 OnItemSelected(value);
             }
-        }
-
-        private async void OnAddItem(object obj)
-        {
-            //await Shell.Current.GoToAsync(nameof(NewItemPage));
         }
 
         private async void OnItemSelected(ConfigurationItem item)

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             x:Class="LightYourHearth.Pages.ColorPickerPopupPage"
+             CloseWhenBackgroundIsClicked="True">
+    <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
+        <StackLayout BackgroundColor="White" Padding="0, 10, 0, 0">
+            <Label Text=""
+                VerticalOptions="StartAndExpand"
+                HorizontalOptions="FillAndExpand"
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                TextColor="Black"
+                HeightRequest="50"
+                BackgroundColor="{Binding Source={x:Reference ColorWheel}, Path=SelectedColor}" />
+            <colorpicker:ColorCircle x:Name="ColorWheel"
+                Padding="5,-10,5,5"
+                HeightRequest="250" />
+            <Button Text="Select" TextColor="White" Clicked="OnClose"></Button>
+        </StackLayout>
+    </StackLayout>
+</pages:PopupPage>

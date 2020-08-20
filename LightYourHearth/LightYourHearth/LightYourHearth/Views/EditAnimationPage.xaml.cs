@@ -1,10 +1,10 @@
-﻿using ColorPicker;
-
-using LightYourHearth.Models;
+﻿using LightYourHearth.Models;
+using LightYourHearth.Pages;
 using LightYourHearth.ViewModels;
 
+using Rg.Plugins.Popup.Services;
+
 using System;
-using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 
@@ -44,7 +44,7 @@ namespace LightYourHearth.Views
 
         private void GenerateLayout()
         {
-            foreach (var arg in ledAnimation.Arguments)
+            foreach (var arg in ledAnimation.Arguments.OrderBy(x => x.Type.ToString()).ThenBy(y => y.Name))
             {
                 switch (arg.Type)
                 {
@@ -123,41 +123,36 @@ namespace LightYourHearth.Views
             );
             ParamLayout.Children.Add(new BoxView()
             {
-                BackgroundColor = Color.Black,
-                HeightRequest = 1
+                BackgroundColor = Color.SlateGray,
+
+                HeightRequest = 1.5
             });
         }
 
         private void AddColorParameter(LedAnimationArgument arg)
         {
-            var displayLabel = new Label()
+            var colorBtn = new Button()
             {
                 Text = arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}",
                 TextColor = Color.Black,
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
-                VerticalTextAlignment = TextAlignment.Center,
-                HorizontalTextAlignment = TextAlignment.Center,
-                HeightRequest = 50,
                 BackgroundColor = Color.FromHex(arg.Value == string.Empty ? arg.DefaultValue : arg.Value)
             };
-            var colorPicker = new ColorCircle()
+
+            colorBtn.Clicked += async (object sender, EventArgs e) =>
             {
-                Padding = new Thickness(5, -10, 5, 5),
-                HeightRequest = 250
-            };
-            colorPicker.PropertyChanged += (object sender, PropertyChangedEventArgs e) =>
-            {
-                Console.WriteLine(e.PropertyName);
-                if (e.PropertyName.Equals("SelectedColor"))
+                var page = new ColorPickerPopupPage((color) =>
                 {
-                    displayLabel.BackgroundColor = colorPicker.SelectedColor;
-                    displayLabel.Text = colorPicker.SelectedColor.ToHex();
-                    vm.UpdateAnimationArgument(arg.Name, colorPicker.SelectedColor.ToHex());
-                }
+                    colorBtn.BackgroundColor = color;
+                    colorBtn.Text = color.ToHex();
+                    vm.UpdateAnimationArgument(arg.Name, color.ToHex());
+                });
+
+                await PopupNavigation.Instance.PushAsync(page);
             };
 
-            TopLayout.Children.Insert(0, new StackLayout()
+            ParamLayout.Children.Add(new StackLayout()
             {
                 Children =
                 {
@@ -170,14 +165,13 @@ namespace LightYourHearth.Views
                         HorizontalOptions=LayoutOptions.StartAndExpand,
                         Padding= new Thickness(5, 0, 0, 0),
                     },
-                    displayLabel,
-                    colorPicker,
-                    new BoxView()
-                    {
-                        BackgroundColor = Color.Black,
-                        HeightRequest = 1
-                    }
+                    colorBtn
                 }
+            });
+            ParamLayout.Children.Add(new BoxView()
+            {
+                BackgroundColor = Color.SlateGray,
+                HeightRequest = 1.5
             });
         }
     }

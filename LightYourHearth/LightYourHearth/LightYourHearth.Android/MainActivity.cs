@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 
+using Rg.Plugins.Popup;
+
 namespace LightYourHearth.Droid
 {
     [Activity(Label = "LightYourHearth", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation | ConfigChanges.UiMode | ConfigChanges.ScreenLayout | ConfigChanges.SmallestScreenSize)]
@@ -17,6 +19,7 @@ namespace LightYourHearth.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            Popup.Init(this, savedInstanceState);
             LoadApplication(new App());
         }
 

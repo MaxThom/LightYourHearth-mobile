@@ -63,6 +63,9 @@
     <PackageReference Include="Plugin.Toast">
       <Version>2.1.2</Version>
     </PackageReference>
+    <PackageReference Include="Rg.Plugins.Popup">
+      <Version>2.0.0.4</Version>
+    </PackageReference>
     <PackageReference Include="Udara.Plugin.XFColorPickerControl">
       <Version>1.0.3</Version>
     </PackageReference>
