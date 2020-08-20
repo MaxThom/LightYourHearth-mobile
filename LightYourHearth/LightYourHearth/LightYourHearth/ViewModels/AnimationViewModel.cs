@@ -28,7 +28,7 @@ namespace LightYourHearth.ViewModels
             Title = "Animation";
             AnimationList = new ObservableCollection<LedAnimation>();
             AnimationCommand = new Command<LedAnimation>(OnLedAnimationTap);
-            AnimationEditCommand = new Command<LedAnimation>(OnLedAnimationEditTap);
+            AnimationEditCommand = new Command<LedAnimation>(OnLedAnimationEditTap, (x) => x.HasArguments);
 
             _serverService.AnimationCapabilities.ForEach(x => AnimationList.Add(x));
         }
@@ -38,7 +38,7 @@ namespace LightYourHearth.ViewModels
             if (animation == null)
                 return;
 
-            Console.WriteLine($"VM:{animation.Name}");
+            Console.WriteLine($"VM:{animation}");
             if (_bluetoothComm.IsDeviceListening)
             {
                 _bluetoothComm.SendMessageAsync(animation.Name);

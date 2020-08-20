@@ -39,8 +39,10 @@ namespace LightYourHearth.Services
                         new LedAnimationArgument()
                         {
                             Name = "wait",
-                            Type = "double",
-                            DefaultValue = "0.05"
+                            Type = LedAnimationArgumentType.Double,
+                            DefaultValue = "0.05",
+                            MinValue="0",
+                            MaxValue="1"
                         }
                     }
                 },
@@ -52,8 +54,10 @@ namespace LightYourHearth.Services
                         new LedAnimationArgument()
                         {
                             Name = "wait",
-                            Type = "double",
-                            DefaultValue = "0.005"
+                            Type = LedAnimationArgumentType.Double,
+                            DefaultValue = "0.005",
+                            MinValue="0",
+                            MaxValue="1"
                         }
                     }
                 },
@@ -65,8 +69,10 @@ namespace LightYourHearth.Services
                         new LedAnimationArgument()
                         {
                             Name = "wait",
-                            Type = "double",
-                            DefaultValue = "0.1"
+                            Type = LedAnimationArgumentType.Double,
+                            DefaultValue = "0.1",
+                            MinValue="0",
+                            MaxValue="1"
                         }
                     }
                 },
@@ -78,14 +84,18 @@ namespace LightYourHearth.Services
                         new LedAnimationArgument()
                         {
                             Name = "wait",
-                            Type = "double",
-                            DefaultValue = "0.01"
+                            Type = LedAnimationArgumentType.Double,
+                            DefaultValue = "0.01",
+                            MinValue="0",
+                            MaxValue="1"
                         },
                         new LedAnimationArgument()
                         {
                             Name = "step",
-                            Type = "int",
-                            DefaultValue = "1"
+                            Type = LedAnimationArgumentType.Int,
+                            DefaultValue = "1",
+                            MinValue="0",
+                            MaxValue="10"
                         }
                     }
                 },
@@ -97,20 +107,24 @@ namespace LightYourHearth.Services
                         new LedAnimationArgument()
                         {
                             Name = "wait",
-                            Type = "double",
-                            DefaultValue = "0.5"
+                            Type = LedAnimationArgumentType.Double,
+                            DefaultValue = "0.5",
+                            MinValue="0",
+                            MaxValue="1"
                         },
                         new LedAnimationArgument()
                         {
                             Name = "blink_times",
-                            Type = "int",
-                            DefaultValue = "5"
+                            Type = LedAnimationArgumentType.Int,
+                            DefaultValue = "5",
+                            MinValue="0",
+                            MaxValue="100"
                         },
                         new LedAnimationArgument()
                         {
                             Name = "color",
-                            Type = "Color",
-                            DefaultValue = "(255, 255, 255)"
+                            Type = LedAnimationArgumentType.Color,
+                            DefaultValue = "#1E90FF"
                         }
                     }
                 },
@@ -122,8 +136,8 @@ namespace LightYourHearth.Services
                         new LedAnimationArgument()
                         {
                             Name = "color",
-                            Type = "Color",
-                            DefaultValue = "(255, 255, 255)"
+                            Type = LedAnimationArgumentType.Color,
+                            DefaultValue = "#1E90FF"
                         }
                     }
                 }
