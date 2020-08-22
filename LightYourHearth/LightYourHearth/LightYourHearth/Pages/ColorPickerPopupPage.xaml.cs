@@ -13,15 +13,17 @@ namespace LightYourHearth.Pages
     {
         private Action<Color> _callback;
 
-        public ColorPickerPopupPage(Action<Color> callback)
+        public ColorPickerPopupPage(Action<Color> callback, Color initialColor)
         {
             InitializeComponent();
             _callback = callback;
+            ColorWheel.SelectedColor = new Color(initialColor.R, initialColor.G, initialColor.B, 1);
         }
 
         private async void OnClose(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PopAsync();
+
             _callback.Invoke(ColorWheel.SelectedColor);
         }
     }

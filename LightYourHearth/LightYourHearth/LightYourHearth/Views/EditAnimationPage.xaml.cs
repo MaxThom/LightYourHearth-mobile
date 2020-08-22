@@ -140,14 +140,16 @@ namespace LightYourHearth.Views
                 BackgroundColor = Color.FromHex(arg.Value == string.Empty ? arg.DefaultValue : arg.Value)
             };
 
+            var initialColor = Color.FromHex(arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}");
             colorBtn.Clicked += async (object sender, EventArgs e) =>
             {
                 var page = new ColorPickerPopupPage((color) =>
                 {
                     colorBtn.BackgroundColor = color;
-                    colorBtn.Text = color.ToHex();
-                    vm.UpdateAnimationArgument(arg.Name, color.ToHex());
-                });
+                    var smallHex = color.ToHex().Remove(1, 2);
+                    colorBtn.Text = smallHex;
+                    vm.UpdateAnimationArgument(arg.Name, smallHex);
+                }, Color.FromHex(arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}"));
 
                 await PopupNavigation.Instance.PushAsync(page);
             };
