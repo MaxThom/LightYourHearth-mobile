@@ -7,6 +7,7 @@ using Plugin.Toast.Abstractions;
 
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 using Xamarin.Forms;
 
@@ -18,7 +19,7 @@ namespace LightYourHearth.ViewModels
         private SettingsService _settingsService => DependencyService.Get<SettingsService>();
         private ServerService _serverService => DependencyService.Get<ServerService>();
 
-        public ObservableCollection<LedAnimation> AnimationList { get; }
+        public ObservableCollection<LedAnimation> AnimationList { get; } = new ObservableCollection<LedAnimation>();
 
         public Command<LedAnimation> AnimationCommand { get; }
         public Command<LedAnimation> AnimationEditCommand { get; }
@@ -26,11 +27,27 @@ namespace LightYourHearth.ViewModels
         public AnimationViewModel()
         {
             Title = "Animation";
-            AnimationList = new ObservableCollection<LedAnimation>();
             AnimationCommand = new Command<LedAnimation>(OnLedAnimationTap);
             AnimationEditCommand = new Command<LedAnimation>(OnLedAnimationEditTap, (x) => x.HasArguments);
 
-            _serverService.AnimationCapabilities.ForEach(x => AnimationList.Add(x));
+            //_serverService.AnimationCapabilities.ForEach(x => AnimationList.Add(x));
+
+            _bluetoothComm.OnBluetoothDisconnected += _bluetoothComm_OnBluetoothDisconnected;
+            _serverService.OnNewAnimationDiscovered += _serverService_OnNewAnimationDiscovered;
+
+            var device = _bluetoothComm.GetPairedDevices().Where(x => x.Address.Equals(_settingsService.BluetoothConfiguration.DeviceMacAddress)).FirstOrDefault();
+            if (device != null)
+                _bluetoothComm.CreateBluetoothConnectionAsync(device);
+        }
+
+        private void _bluetoothComm_OnBluetoothDisconnected(object sender, EventArgs e)
+        {
+            Device.BeginInvokeOnMainThread(() => AnimationList.Clear());
+        }
+
+        private void _serverService_OnNewAnimationDiscovered(object sender, LedAnimation e)
+        {
+            Device.BeginInvokeOnMainThread(() => AnimationList.Add(e));
         }
 
         private void OnLedAnimationTap(LedAnimation animation)
@@ -41,7 +58,8 @@ namespace LightYourHearth.ViewModels
             Console.WriteLine($"VM:{animation}");
             if (_bluetoothComm.IsDeviceListening)
             {
-                _bluetoothComm.SendMessageAsync(animation.Name);
+                var ledAnimation = _serverService.AnimationCapabilities.Where(x => x.Name.Equals(animation.Name)).FirstOrDefault();
+                _bluetoothComm.SendMessageAsync(animation.ToCommandString());
                 CrossToastPopUp.Current.ShowToastMessage(animation.DisplayName, ToastLength.Short);
             }
             else

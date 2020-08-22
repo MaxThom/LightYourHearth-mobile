@@ -7,5 +7,7 @@
 
         public string LedType { get; set; }
         public int LedPixelCount { get; set; }
+
+        public string ToConfigurationString() => $"led_type={LedType},led_pixel_count={LedPixelCount}";
     }
 }

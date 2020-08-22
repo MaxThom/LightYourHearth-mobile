@@ -31,5 +31,10 @@ namespace LightYourHearth.Models
             }
             return $"{Name}:{argStr}";
         }
+
+        public string ToCommandString()
+        {
+            return $"{Name}:{string.Join(",", Arguments.Select(x => x.ToCommandString()))}";
+        }
     }
 }

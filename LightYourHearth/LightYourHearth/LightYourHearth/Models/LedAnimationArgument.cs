@@ -13,5 +13,12 @@ namespace LightYourHearth.Models
         public string MinValue { get; set; }
 
         public string GetDisplayName() => Name.First().ToString().ToUpper() + Name.Substring(1).Replace("_", " ");
+
+        public string ToCommandString()
+        {
+            if (Value == string.Empty)
+                return $"{Name}={DefaultValue}";
+            return $"{Name}={Value}";
+        }
     }
 }

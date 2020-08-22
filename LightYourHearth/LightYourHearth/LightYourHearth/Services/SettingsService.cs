@@ -27,7 +27,7 @@ namespace LightYourHearth.Services
             {
                 Id = "1",
                 LedType = "WS2812B",
-                LedPixelCount = 144
+                LedPixelCount = 64
             };
         }
 

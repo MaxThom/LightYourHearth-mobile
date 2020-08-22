@@ -32,13 +32,13 @@ namespace LightYourHearth.ViewModels
         private void _bluetoothComm_OnBluetoothDisconnected(object sender, EventArgs e)
         {
             BluetoothConnectionIcon = "plug_out.png";
-            CrossToastPopUp.Current.ShowToastMessage("Device disconnected", ToastLength.Long);
+            Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage("Device disconnected", ToastLength.Long));
         }
 
         private void _bluetoothComm_OnBluetoothConnected(object sender, EventArgs e)
         {
             BluetoothConnectionIcon = "plug_in.png";
-            CrossToastPopUp.Current.ShowToastMessage("Device connected", ToastLength.Long);
+            Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage("Device connected", ToastLength.Long));
         }
 
         #region Properties

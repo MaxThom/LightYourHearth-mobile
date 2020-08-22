@@ -61,13 +61,15 @@ namespace LightYourHearth.Services
                 if (socket != null && socket.IsConnected)
                 {
                     SelectedDevice = device;
-                    Console.WriteLine("Connection successful!");
-                    OnBluetoothConnected?.Invoke(this, null);
-
                     inStream = (InputStreamInvoker)socket.InputStream;
                     outStream = (OutputStreamInvoker)socket.OutputStream;
-                    bluetoothListen = new Task(() => ListenAsync());
+                    bluetoothListen = new Task(async () =>
+                    {
+                        await ListenAsync();
+                    });
                     bluetoothListen.Start();
+                    Console.WriteLine("Connection successful!");
+                    OnBluetoothConnected?.Invoke(this, null);
                     return true;
                 }
             }
@@ -109,6 +111,7 @@ namespace LightYourHearth.Services
                 byte[] buffer = Encoding.UTF8.GetBytes(message);
 
                 await outStream.WriteAsync(buffer, 0, buffer.Length);
+                await outStream.FlushAsync();
             }
             catch (Exception e)
             {
@@ -116,7 +119,7 @@ namespace LightYourHearth.Services
             }
         }
 
-        private async void ListenAsync()
+        private async Task ListenAsync()
         {
             IsDeviceListening = true;
             byte[] textBuffer;
@@ -140,6 +143,7 @@ namespace LightYourHearth.Services
                     break;
                 }
             }
+            await CloseBluetoothConnectionAsync();
             Console.WriteLine("Listening has ended.");
         }
     }

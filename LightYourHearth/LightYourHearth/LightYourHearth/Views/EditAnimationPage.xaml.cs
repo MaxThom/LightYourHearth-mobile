@@ -80,8 +80,8 @@ namespace LightYourHearth.Views
             };
             var slider = new Slider()
             {
-                Minimum = double.Parse(arg.MinValue),
-                Maximum = double.Parse(arg.MaxValue),
+                Maximum = double.Parse(arg.MaxValue, CultureInfo.InvariantCulture),
+                Minimum = double.Parse(arg.MinValue, CultureInfo.InvariantCulture),
                 Value = arg.Value == string.Empty ? double.Parse(arg.DefaultValue, CultureInfo.InvariantCulture) : double.Parse(arg.Value, CultureInfo.InvariantCulture),
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 ThumbColor = Color.DodgerBlue,
@@ -90,7 +90,7 @@ namespace LightYourHearth.Views
             };
             slider.ValueChanged += (sender, args) =>
             {
-                var newValue = arg.Type == LedAnimationArgumentType.Int ? ((int)args.NewValue).ToString() : args.NewValue.ToString();
+                var newValue = arg.Type == LedAnimationArgumentType.Int ? ((int)args.NewValue).ToString(CultureInfo.InvariantCulture) : args.NewValue.ToString(CultureInfo.InvariantCulture);
                 displayLabel.Text = newValue;
                 vm.UpdateAnimationArgument(arg.Name, newValue);
             };
