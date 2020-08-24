@@ -14,7 +14,7 @@ namespace LightYourHearth.Models
         public string ledType { get; set; }
         public string LedType { get => ledType; set { ledType = value; SaveToLocalStorage(); } }
         public int ledPixelCount { get; set; }
-        public int LedPixelCount { get => LedPixelCount; set { LedPixelCount = value; SaveToLocalStorage(); } }
+        public int LedPixelCount { get => ledPixelCount; set { ledPixelCount = value; SaveToLocalStorage(); } }
 
         public string ToConfigurationString() => $"led_type={LedType},led_pixel_count={LedPixelCount}";
 
@@ -27,7 +27,7 @@ namespace LightYourHearth.Models
         {
             //ledType = _storage.Get(nameof(LedType)) ?? "";
             //ledPixelCount = int.Parse(_storage.Get(nameof(LedPixelCount)) ?? "0");
-            ledType = Preferences.Get(nameof(LedType), "0");
+            ledType = Preferences.Get(nameof(LedType), "");
             ledPixelCount = Preferences.Get(nameof(LedPixelCount), 0);
         }
 

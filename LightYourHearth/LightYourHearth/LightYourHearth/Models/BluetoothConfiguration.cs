@@ -25,7 +25,7 @@ namespace LightYourHearth.Models
         {
             //deviceName = _storage.Get(nameof(DeviceName)) ?? "";
             //deviceMacAddress = _storage.Get(nameof(DeviceMacAddress)) ?? "";
-            deviceName = Preferences.Get(nameof(DeviceName), "0");
+            deviceName = Preferences.Get(nameof(DeviceName), "");
             deviceMacAddress = Preferences.Get(nameof(DeviceMacAddress), "0");
         }
 
@@ -33,9 +33,8 @@ namespace LightYourHearth.Models
         {
             //_storage.Put(nameof(DeviceName), DeviceName);
             //_storage.Put(nameof(DeviceMacAddress), DeviceName);
-
             Preferences.Set(nameof(DeviceName), DeviceName);
-            Preferences.Set(nameof(DeviceMacAddress), DeviceName);
+            Preferences.Set(nameof(DeviceMacAddress), DeviceMacAddress);
         }
     }
 }
