@@ -2,16 +2,28 @@
 
 using System.Collections.Generic;
 
+using Xamarin.Forms;
+
 namespace LightYourHearth.Services
 {
     public class SettingsService
     {
+        private IBluetoothComm _bluetoothComm => DependencyService.Get<IBluetoothComm>();
+
         public BluetoothConfiguration BluetoothConfiguration { get; set; }
         public LedConfiguration LedConfiguration { get; set; }
 
         public SettingsService()
         {
+            _bluetoothComm.OnBluetoothConnected += _bluetoothComm_OnBluetoothConnected;
+
             LoadConfigurations();
+        }
+
+        private void _bluetoothComm_OnBluetoothConnected(object sender, System.EventArgs e)
+        {
+            BluetoothConfiguration.DeviceName = _bluetoothComm.SelectedDevice.Name;
+            BluetoothConfiguration.DeviceMacAddress = _bluetoothComm.SelectedDevice.Address;
         }
 
         private void LoadConfigurations()
@@ -19,9 +31,7 @@ namespace LightYourHearth.Services
             // Load all settings from local files
             BluetoothConfiguration = new BluetoothConfiguration()
             {
-                Id = "0",
-                DeviceName = "raspberrypi",
-                DeviceMacAddress = "DC:A6:32:68:08:7C"
+                Id = "0"
             };
             LedConfiguration = new LedConfiguration()
             {

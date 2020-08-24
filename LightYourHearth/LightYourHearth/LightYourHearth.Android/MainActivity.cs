@@ -19,7 +19,10 @@ namespace LightYourHearth.Droid
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+
             Popup.Init(this, savedInstanceState);
+            //SimpleStorage.SetContext(ApplicationContext);
+
             LoadApplication(new App());
         }
 

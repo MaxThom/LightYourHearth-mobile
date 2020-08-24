@@ -37,7 +37,10 @@ namespace LightYourHearth.ViewModels
 
             var device = _bluetoothComm.GetPairedDevices().Where(x => x.Address.Equals(_settingsService.BluetoothConfiguration.DeviceMacAddress)).FirstOrDefault();
             if (device != null)
+            {
+                Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage($"Connecting to {device.Name}...", ToastLength.Long));
                 _bluetoothComm.CreateBluetoothConnectionAsync(device);
+            }
         }
 
         private void _bluetoothComm_OnBluetoothDisconnected(object sender, EventArgs e)

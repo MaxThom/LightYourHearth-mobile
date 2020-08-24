@@ -103,7 +103,10 @@ namespace LightYourHearth.ViewModels
             {
                 var device = _bluetoothComm.GetPairedDevices().Where(x => x.Address.Equals(_settingsService.BluetoothConfiguration.DeviceMacAddress)).FirstOrDefault();
                 if (device != null)
+                {
+                    Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage($"Connecting to {device.Name}...", ToastLength.Long));
                     await _bluetoothComm.CreateBluetoothConnectionAsync(device);
+                }
             }
             else if (BluetoothConnectionIcon.Equals("plug_in.png"))
             {
