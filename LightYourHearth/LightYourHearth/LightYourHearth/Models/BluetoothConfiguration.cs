@@ -26,7 +26,7 @@ namespace LightYourHearth.Models
             //deviceName = _storage.Get(nameof(DeviceName)) ?? "";
             //deviceMacAddress = _storage.Get(nameof(DeviceMacAddress)) ?? "";
             deviceName = Preferences.Get(nameof(DeviceName), "");
-            deviceMacAddress = Preferences.Get(nameof(DeviceMacAddress), "0");
+            deviceMacAddress = Preferences.Get(nameof(DeviceMacAddress), "");
         }
 
         public override void SaveToLocalStorage()

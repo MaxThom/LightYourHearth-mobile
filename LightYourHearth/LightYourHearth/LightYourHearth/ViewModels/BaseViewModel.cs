@@ -107,6 +107,8 @@ namespace LightYourHearth.ViewModels
                     Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage($"Connecting to {device.Name}...", ToastLength.Long));
                     await _bluetoothComm.CreateBluetoothConnectionAsync(device);
                 }
+                else
+                    Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage($"No device paired.", ToastLength.Long));
             }
             else if (BluetoothConnectionIcon.Equals("plug_in.png"))
             {
