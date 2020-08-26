@@ -5,6 +5,7 @@
         Double,
         Int,
         Color,
+        Boolean,
         String
     }
 }

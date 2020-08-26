@@ -60,6 +60,10 @@ namespace LightYourHearth.Views
                         AddSliderParameter(arg);
                         break;
 
+                    case LedAnimationArgumentType.Boolean:
+                        AddSwitchParameter(arg);
+                        break;
+
                     case LedAnimationArgumentType.String:
                         break;
                 }
@@ -124,7 +128,6 @@ namespace LightYourHearth.Views
             ParamLayout.Children.Add(new BoxView()
             {
                 BackgroundColor = Color.SlateGray,
-
                 HeightRequest = 1.5
             });
         }
@@ -170,6 +173,53 @@ namespace LightYourHearth.Views
                     colorBtn
                 }
             });
+            ParamLayout.Children.Add(new BoxView()
+            {
+                BackgroundColor = Color.SlateGray,
+                HeightRequest = 1.5
+            });
+        }
+
+        private void AddSwitchParameter(LedAnimationArgument arg)
+        {
+            var switchUi = new Switch()
+            {
+                IsToggled = arg.Value == string.Empty ? bool.Parse(arg.DefaultValue) : bool.Parse(arg.Value),
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                ThumbColor = Color.DodgerBlue,
+                OnColor = Color.FromHex("#7cbbf2"),
+                BackgroundColor = Color.White
+            };
+            switchUi.Toggled += (sender, args) =>
+            {
+                vm.UpdateAnimationArgument(arg.Name, switchUi.IsToggled.ToString());
+            };
+
+            ParamLayout.Children.Add(
+                new StackLayout()
+                {
+                    Children =
+                    {
+                        new StackLayout()
+                        {
+                            Orientation=StackOrientation.Horizontal,
+                            Padding= new Thickness(5, 0),
+                            Children =
+                            {
+                                new Label()
+                                {
+                                    Text=$"{arg.GetDisplayName()}",
+                                    TextColor=Color.Black,
+                                    FontAttributes=FontAttributes.Bold,
+                                    VerticalOptions=LayoutOptions.Start,
+                                    HorizontalOptions=LayoutOptions.Start,
+                                },
+                                switchUi
+                            }
+                        }
+                    }
+                }
+            );
             ParamLayout.Children.Add(new BoxView()
             {
                 BackgroundColor = Color.SlateGray,
