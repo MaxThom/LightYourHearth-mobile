@@ -9,7 +9,7 @@
     <ContentPage.BindingContext>
         <vm:LedConfigurationViewModel />
     </ContentPage.BindingContext>
-    
+
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Plug In"
                  IconImageSource="{Binding BluetoothConnectionIcon}"
@@ -19,10 +19,38 @@
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Led Configuration!"
-                VerticalOptions="CenterAndExpand"
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10">
+
+            <StackLayout>
+                <Label  Text="Led strip type"
+                        LineBreakMode="NoWrap"
+                        FontSize="16"
+                        TextColor="Black" />
+                <Picker Title="Led strip type"
+                        Margin="0,-10,0,0"
+                        FontSize="16"
+                        FontAttributes="Italic"
+                        TextColor="Black"
+                        ItemsSource="{Binding LedStripsOption}"
+                        SelectedItem="{Binding SelectedLedStrip}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand" />
+            </StackLayout>
+            <StackLayout>
+                <Label  Text="Led pixel count"
+                        LineBreakMode="NoWrap"
+                        FontSize="16"
+                        TextColor="Black" />
+                <Picker Title="Led pixcel count"
+                        Margin="0,-10,0,0"
+                        FontSize="16"
+                        FontAttributes="Italic"
+                        TextColor="Black"
+                        ItemsSource="{Binding LedCountOption}"
+                        SelectedItem="{Binding SelectedLedCount}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="FillAndExpand" />
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

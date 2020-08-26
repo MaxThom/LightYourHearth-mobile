@@ -35,9 +35,7 @@ namespace LightYourHearth.Services
             };
             LedConfiguration = new LedConfiguration()
             {
-                Id = "1",
-                LedType = "SK6812",
-                LedPixelCount = 300
+                Id = "1"
             };
         }
 

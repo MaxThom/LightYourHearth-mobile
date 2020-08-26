@@ -1,6 +1,4 @@
-﻿using Android.App;
-
-using Xamarin.Essentials;
+﻿using Xamarin.Essentials;
 
 namespace LightYourHearth.Models
 {
@@ -11,9 +9,9 @@ namespace LightYourHearth.Models
         public override string Text { get => "Led"; }
         public override string Description { get => $"{LedType} - {LedPixelCount} pixels"; }
 
-        public string ledType { get; set; }
+        private string ledType { get; set; }
         public string LedType { get => ledType; set { ledType = value; SaveToLocalStorage(); } }
-        public int ledPixelCount { get; set; }
+        private int ledPixelCount { get; set; }
         public int LedPixelCount { get => ledPixelCount; set { ledPixelCount = value; SaveToLocalStorage(); } }
 
         public string ToConfigurationString() => $"led_type={LedType},led_pixel_count={LedPixelCount}";
