@@ -22,27 +22,47 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <flv:FlowListView x:Name="flowListView" FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="True"
+        <StackLayout>
+            <Label
+                Text = "Brightness"
+                TextColor = "Black"
+                FontAttributes="Bold"
+                VerticalOptions = "StartAndExpand"
+                HorizontalOptions = "StartAndExpand"
+                VerticalTextAlignment = "Center"
+                HorizontalTextAlignment = "Center"
+                Padding = "10, 5, 10, 0" />
+            <Slider
+                Minimum="0"
+                Maximum="255"
+                HorizontalOptions = "FillAndExpand"
+                ThumbColor = "DodgerBlue"
+                MinimumTrackColor = "DodgerBlue"
+                MaximumTrackColor = "Gray"
+                Margin="10, 0, 3, 10"
+                Value="{Binding Brightness}" />
+            <BoxView BackgroundColor = "SlateGray" HeightRequest = "1.5" />
+            <flv:FlowListView x:Name="flowListView" FlowColumnCount="3" SeparatorVisibility="None" HasUnevenRows="True"
 	        FlowItemTappedCommand="{Binding AnimationCommand}" FlowLastTappedItem="{Binding LastTappedItem}"
 	        FlowItemsSource="{Binding AnimationList}">
-
-            <flv:FlowListView.FlowColumnTemplate>
-                <DataTemplate>
-                    <Grid  Padding="5">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Grid.RowSpan="2" Text="{Binding DisplayName}" Image="tab_about.png" ContentLayout="Top,0" Margin="0,0,0,-6"
+                <flv:FlowListView.FlowColumnTemplate>
+                    <DataTemplate>
+                        <Grid  Padding="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Button Grid.Row="0" Grid.RowSpan="2" Text="{Binding DisplayName}" Image="tab_about.png" ContentLayout="Top,0" Margin="0,0,0,-6"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationCommand}"
                             CommandParameter="{Binding .}" />
-                        <Button Grid.Row="2" Text="Edit" BackgroundColor="DarkGray" TextColor="Black" HeightRequest="40" MinimumHeightRequest="40" FontSize="Micro"
+                            <Button Grid.Row="2" Text="Edit" BackgroundColor="DarkGray" TextColor="Black" HeightRequest="40" MinimumHeightRequest="40" FontSize="Micro"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationEditCommand}"
                             CommandParameter="{Binding .}" />
-                    </Grid>
-                </DataTemplate>
-            </flv:FlowListView.FlowColumnTemplate>
-        </flv:FlowListView>
+                        </Grid>
+                    </DataTemplate>
+                </flv:FlowListView.FlowColumnTemplate>
+            </flv:FlowListView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

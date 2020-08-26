@@ -24,6 +24,18 @@ namespace LightYourHearth.ViewModels
         public Command<LedAnimation> AnimationCommand { get; }
         public Command<LedAnimation> AnimationEditCommand { get; }
 
+        private int _brightness = 255;
+
+        public int Brightness
+        {
+            get => _brightness;
+            set
+            {
+                SetProperty(ref _brightness, value);
+                OnBrightnessValueChanged(value);
+            }
+        }
+
         public AnimationViewModel()
         {
             Title = "Animation";
@@ -72,6 +84,15 @@ namespace LightYourHearth.ViewModels
         public async void OnLedAnimationEditTap(LedAnimation animation)
         {
             await Shell.Current.GoToAsync($"{nameof(EditAnimationPage)}?animation={animation.Name}");
+        }
+
+        private void OnBrightnessValueChanged(int value)
+        {
+            Console.WriteLine("Brightness : " + value);
+            if (_bluetoothComm.IsDeviceListening)
+            {
+                _bluetoothComm.SendMessageAsync($"Led_Set_Brightness:brightness={value}");
+            }
         }
     }
 }
