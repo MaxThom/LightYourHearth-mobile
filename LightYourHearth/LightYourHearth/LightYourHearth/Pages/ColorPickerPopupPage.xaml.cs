@@ -19,7 +19,7 @@ namespace LightYourHearth.Pages
         private List<string> preselectedColors = new List<string>()
         {
             "#FF000000",
-            "#00FFFFFF",
+            "#00000000",
             "#FF0000FF",
             "#FFFF0000",
             "#FF00FF00",
