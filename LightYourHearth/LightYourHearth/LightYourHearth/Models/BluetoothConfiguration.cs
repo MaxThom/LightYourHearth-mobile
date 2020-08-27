@@ -1,13 +1,9 @@
-﻿using System;
-
-using Xamarin.Essentials;
+﻿using Xamarin.Essentials;
 
 namespace LightYourHearth.Models
 {
     public class BluetoothConfiguration : ConfigurationItem
     {
-        //private SimpleStorage _storage = SimpleStorage.EditGroup(nameof(BluetoothConfiguration));
-
         public override string Text { get => "Bluetooth"; }
         public override string Description { get => $"{DeviceName} - {DeviceMacAddress}"; }
 
@@ -23,16 +19,12 @@ namespace LightYourHearth.Models
 
         public override void LoadFromLocalStorage()
         {
-            //deviceName = _storage.Get(nameof(DeviceName)) ?? "";
-            //deviceMacAddress = _storage.Get(nameof(DeviceMacAddress)) ?? "";
             deviceName = Preferences.Get(nameof(DeviceName), "");
             deviceMacAddress = Preferences.Get(nameof(DeviceMacAddress), "");
         }
 
         public override void SaveToLocalStorage()
         {
-            //_storage.Put(nameof(DeviceName), DeviceName);
-            //_storage.Put(nameof(DeviceMacAddress), DeviceName);
             Preferences.Set(nameof(DeviceName), DeviceName);
             Preferences.Set(nameof(DeviceMacAddress), DeviceMacAddress);
         }

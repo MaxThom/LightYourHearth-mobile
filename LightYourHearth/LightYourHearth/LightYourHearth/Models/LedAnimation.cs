@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+
+using Xamarin.Essentials;
 
 namespace LightYourHearth.Models
 {
@@ -20,6 +23,20 @@ namespace LightYourHearth.Models
         }
 
         public bool HasArguments { get => Arguments != null && Arguments.Any(); }
+
+        public void AddAndLoadArgument(LedAnimationArgument arg)
+        {
+            arg.Value = Preferences.Get($"{Name}-{arg.Name}", string.Empty);
+            Arguments.Add(arg);
+            Console.WriteLine($"{Name}-{arg.Name}:{arg.Value}");
+        }
+
+        public void SetAndSaveArgument(string argName, string argValue)
+        {
+            var arg = Arguments.Where(x => x.Name.Equals(argName)).FirstOrDefault();
+            Preferences.Set($"{Name}-{arg.Name}", argValue);
+            arg.Value = argValue;
+        }
 
         public override string ToString()
         {

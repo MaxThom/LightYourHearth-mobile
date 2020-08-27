@@ -25,8 +25,7 @@ namespace LightYourHearth.ViewModels
 
         public void UpdateAnimationArgument(string argName, string argValue)
         {
-            var arg = ledAnimation.Arguments.Where(x => x.Name.Equals(argName)).FirstOrDefault();
-            arg.Value = argValue;
+            ledAnimation.SetAndSaveArgument(argName, argValue);
         }
     }
 }

@@ -21,9 +21,9 @@
                 HeightRequest="250"
                 ShowLuminositySlider="False"
                 ShowAlphaSlider="True" />
+            <FlexLayout x:Name="ColorPickerLayout" Direction="Row" Wrap="Wrap" AlignItems="Start" JustifyContent="Start">
+            </FlexLayout>
             <Button Text="Select" TextColor="White" Clicked="OnClose"></Button>
         </StackLayout>
-        <FlexLayout x:Name="ColorPickerLayout" Direction="Row" Wrap="Wrap" AlignItems="Start" JustifyContent="Start">
-        </FlexLayout>
     </StackLayout>
 </pages:PopupPage>

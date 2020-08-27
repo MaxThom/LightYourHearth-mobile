@@ -4,8 +4,6 @@ namespace LightYourHearth.Models
 {
     public class LedConfiguration : ConfigurationItem
     {
-        //private SimpleStorage _storage = SimpleStorage.EditGroup(nameof(LedConfiguration));
-
         public override string Text { get => "Led"; }
         public override string Description { get => $"{LedType} - {LedPixelCount} pixels"; }
 
@@ -23,16 +21,12 @@ namespace LightYourHearth.Models
 
         public override void LoadFromLocalStorage()
         {
-            //ledType = _storage.Get(nameof(LedType)) ?? "";
-            //ledPixelCount = int.Parse(_storage.Get(nameof(LedPixelCount)) ?? "0");
             ledType = Preferences.Get(nameof(LedType), "");
             ledPixelCount = Preferences.Get(nameof(LedPixelCount), 0);
         }
 
         public override void SaveToLocalStorage()
         {
-            //_storage.Put(nameof(LedType), LedType);
-            //_storage.Put(nameof(LedPixelCount), LedPixelCount);
             Preferences.Set(nameof(LedType), LedType);
             Preferences.Set(nameof(LedPixelCount), LedPixelCount);
         }
