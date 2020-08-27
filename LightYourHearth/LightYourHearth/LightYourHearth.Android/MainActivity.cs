@@ -3,6 +3,8 @@ using Android.Content.PM;
 using Android.OS;
 using Android.Runtime;
 
+using ImageCircle.Forms.Plugin.Droid;
+
 using Rg.Plugins.Popup;
 
 namespace LightYourHearth.Droid
@@ -21,6 +23,7 @@ namespace LightYourHearth.Droid
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
             Popup.Init(this, savedInstanceState);
+            ImageCircleRenderer.Init();
             //SimpleStorage.SetContext(ApplicationContext);
 
             LoadApplication(new App());

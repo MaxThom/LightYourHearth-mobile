@@ -1,6 +1,11 @@
 ﻿using DLToolkit.Forms.Controls;
 
+using ImageCircle.Forms.Plugin.Abstractions;
+
 using LightYourHearth.ViewModels;
+
+using System;
+using System.Collections.Generic;
 
 using Xamarin.Forms;
 

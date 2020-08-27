@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:pages="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
+             xmlns:circlepicker="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              x:Class="LightYourHearth.Pages.ColorPickerPopupPage"
              CloseWhenBackgroundIsClicked="True">
     <StackLayout VerticalOptions="Center" HorizontalOptions="FillAndExpand" Padding="20, 20, 20, 20">
@@ -22,5 +23,7 @@
                 ShowAlphaSlider="True" />
             <Button Text="Select" TextColor="White" Clicked="OnClose"></Button>
         </StackLayout>
+        <FlexLayout x:Name="ColorPickerLayout" Direction="Row" Wrap="Wrap" AlignItems="Start" JustifyContent="Start">
+        </FlexLayout>
     </StackLayout>
 </pages:PopupPage>
