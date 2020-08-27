@@ -17,7 +17,7 @@ namespace LightYourHearth.Pages
         {
             InitializeComponent();
             _callback = callback;
-            ColorWheel.SelectedColor = new Color(initialColor.R, initialColor.G, initialColor.B, 1);
+            ColorWheel.SelectedColor = new Color(initialColor.R, initialColor.G, initialColor.B, initialColor.A);
         }
 
         private async void OnClose(object sender, EventArgs e)

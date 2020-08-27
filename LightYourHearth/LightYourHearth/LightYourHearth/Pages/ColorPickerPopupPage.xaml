@@ -19,7 +19,7 @@
                 Padding="5,-10,5,5"
                 HeightRequest="250"
                 ShowLuminositySlider="False"
-                ShowAlphaSlider="False" />
+                ShowAlphaSlider="True" />
             <Button Text="Select" TextColor="White" Clicked="OnClose"></Button>
         </StackLayout>
     </StackLayout>

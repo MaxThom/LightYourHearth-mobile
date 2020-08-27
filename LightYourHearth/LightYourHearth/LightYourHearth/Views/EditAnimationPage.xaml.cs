@@ -148,10 +148,10 @@ namespace LightYourHearth.Views
             {
                 var page = new ColorPickerPopupPage((color) =>
                 {
+                    Console.WriteLine($"{color.R}-{color.G}-{color.B}-{color.A}");
                     colorBtn.BackgroundColor = color;
-                    var smallHex = color.ToHex().Remove(1, 2);
-                    colorBtn.Text = smallHex;
-                    vm.UpdateAnimationArgument(arg.Name, smallHex);
+                    colorBtn.Text = color.ToHex();
+                    vm.UpdateAnimationArgument(arg.Name, color.ToHex());
                 }, Color.FromHex(arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}"));
 
                 await PopupNavigation.Instance.PushAsync(page);

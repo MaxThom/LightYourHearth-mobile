@@ -24,7 +24,7 @@ namespace LightYourHearth.ViewModels
         public Command<LedAnimation> AnimationCommand { get; }
         public Command<LedAnimation> AnimationEditCommand { get; }
 
-        private int _brightness = 255;
+        private int _brightness = 127;
 
         public int Brightness
         {
