@@ -29,7 +29,7 @@ namespace LightYourHearth.ViewModels
             ExecuteLoadItemsCommand();
         }
 
-        private void ExecuteLoadItemsCommand()
+        public void ExecuteLoadItemsCommand()
         {
             IsBusy = true;
 
