@@ -4,7 +4,8 @@
              x:Class="LightYourHearth.Views.LedConfigurationPage"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
              xmlns:model="clr-namespace:LightYourHearth.Models"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource Primary4}">
 
     <ContentPage.BindingContext>
         <vm:LedConfigurationViewModel />
@@ -20,17 +21,14 @@
 
     <ContentPage.Content>
         <StackLayout Padding="10">
-
             <StackLayout>
                 <Label  Text="Led strip type"
                         LineBreakMode="NoWrap"
-                        FontSize="16"
-                        TextColor="Black" />
+                        FontSize="16" />
                 <Picker Title="Led strip type"
                         Margin="0,-10,0,0"
                         FontSize="16"
                         FontAttributes="Italic"
-                        TextColor="Black"
                         ItemsSource="{Binding LedStripsOption}"
                         SelectedItem="{Binding SelectedLedStrip}"
                         HorizontalOptions="FillAndExpand"
@@ -39,13 +37,11 @@
             <StackLayout>
                 <Label  Text="Led pixel count"
                         LineBreakMode="NoWrap"
-                        FontSize="16"
-                        TextColor="Black" />
+                        FontSize="16" />
                 <Picker Title="Led pixcel count"
                         Margin="0,-10,0,0"
                         FontSize="16"
                         FontAttributes="Italic"
-                        TextColor="Black"
                         ItemsSource="{Binding LedCountOption}"
                         SelectedItem="{Binding SelectedLedCount}"
                         HorizontalOptions="FillAndExpand"

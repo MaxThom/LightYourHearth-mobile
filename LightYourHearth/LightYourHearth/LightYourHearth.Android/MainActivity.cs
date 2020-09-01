@@ -27,6 +27,8 @@ namespace LightYourHearth.Droid
             //SimpleStorage.SetContext(ApplicationContext);
 
             LoadApplication(new App());
+            //Window.SetStatusBarColor(Android.Graphics.Color.Rgb(234, 128, 252));
+            Window.SetStatusBarColor(Android.Graphics.Color.Rgb(182, 79, 200));
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)

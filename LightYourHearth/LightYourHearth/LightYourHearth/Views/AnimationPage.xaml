@@ -6,7 +6,8 @@
              xmlns:model="clr-namespace:LightYourHearth.Models"
              xmlns:circlepicker="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
              xmlns:flv="clr-namespace:DLToolkit.Forms.Controls;assembly=DLToolkit.Forms.Controls.FlowListView"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource Primary4}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Plug In"
@@ -26,7 +27,6 @@
         <StackLayout>
             <Label
                 Text = "Brightness"
-                TextColor = "Black"
                 FontAttributes="Bold"
                 VerticalOptions = "StartAndExpand"
                 HorizontalOptions = "StartAndExpand"
@@ -37,9 +37,6 @@
                 Minimum="0"
                 Maximum="255"
                 HorizontalOptions = "FillAndExpand"
-                ThumbColor = "DodgerBlue"
-                MinimumTrackColor = "DodgerBlue"
-                MaximumTrackColor = "Gray"
                 Margin="10, 0, 3, 10"
                 Value="{Binding Brightness}" />
             <BoxView BackgroundColor = "SlateGray" HeightRequest = "1.5" />
@@ -54,10 +51,10 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
-                            <Button Grid.Row="0" Grid.RowSpan="2" Text="{Binding DisplayName}" Image="tab_about.png" ContentLayout="Top,0" Margin="0,0,0,-6"
+                            <Button Grid.Row="0" Grid.RowSpan="2" Text="{Binding DisplayName}" Image="tab_about_pink.png" ContentLayout="Top,0" Margin="0,0,0,-6"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationCommand}"
                             CommandParameter="{Binding .}" />
-                            <Button Grid.Row="2" Text="Edit" BackgroundColor="DarkGray" TextColor="Black" HeightRequest="40" MinimumHeightRequest="40" FontSize="Micro"
+                            <Button Grid.Row="2" Text="Edit" BackgroundColor="{DynamicResource Primary3}" HeightRequest="40" MinimumHeightRequest="40" FontSize="Micro"
                             Command="{Binding Source={RelativeSource AncestorType={x:Type vm:AnimationViewModel}}, Path=AnimationEditCommand}"
                             CommandParameter="{Binding .}" />
                         </Grid>

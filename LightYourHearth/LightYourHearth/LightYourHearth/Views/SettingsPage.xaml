@@ -4,7 +4,8 @@
              x:Class="LightYourHearth.Views.SettingsPage"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
              xmlns:model="clr-namespace:LightYourHearth.Models"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource Primary4}">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -30,13 +31,11 @@
                     <Label Text="{Binding Text}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemTextStyle}"
-                            FontSize="16"
-                            TextColor="Black" />
+                            FontSize="16" />
                     <Label Text="{Binding Description}"
                             LineBreakMode="NoWrap"
                             Style="{DynamicResource ListItemDetailTextStyle}"
-                            FontSize="13"
-                            TextColor="Black" />
+                            FontSize="13" />
                     <StackLayout.GestureRecognizers>
                         <TapGestureRecognizer
                                 NumberOfTapsRequired="1"

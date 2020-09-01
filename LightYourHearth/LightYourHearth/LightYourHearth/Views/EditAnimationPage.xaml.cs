@@ -75,7 +75,6 @@ namespace LightYourHearth.Views
             var displayLabel = new Label()
             {
                 Text = arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}",
-                TextColor = Color.Black,
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.StartAndExpand,
                 VerticalTextAlignment = TextAlignment.Center,
@@ -87,10 +86,7 @@ namespace LightYourHearth.Views
                 Maximum = double.Parse(arg.MaxValue, CultureInfo.InvariantCulture),
                 Minimum = double.Parse(arg.MinValue, CultureInfo.InvariantCulture),
                 Value = arg.Value == string.Empty ? double.Parse(arg.DefaultValue, CultureInfo.InvariantCulture) : double.Parse(arg.Value, CultureInfo.InvariantCulture),
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                ThumbColor = Color.DodgerBlue,
-                MinimumTrackColor = Color.DodgerBlue,
-                MaximumTrackColor = Color.Gray,
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
             slider.ValueChanged += (sender, args) =>
             {
@@ -113,7 +109,6 @@ namespace LightYourHearth.Views
                                 new Label()
                                 {
                                     Text=$"{arg.GetDisplayName()}",
-                                    TextColor=Color.Black,
                                     FontAttributes=FontAttributes.Bold,
                                     VerticalOptions=LayoutOptions.Start,
                                     HorizontalOptions=LayoutOptions.Start,
@@ -137,7 +132,6 @@ namespace LightYourHearth.Views
             var colorBtn = new Button()
             {
                 Text = arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}",
-                TextColor = Color.Black,
                 VerticalOptions = LayoutOptions.StartAndExpand,
                 HorizontalOptions = LayoutOptions.FillAndExpand,
                 BackgroundColor = Color.FromHex(arg.Value == string.Empty ? arg.DefaultValue : arg.Value)
@@ -164,7 +158,6 @@ namespace LightYourHearth.Views
                     new Label()
                     {
                         Text="Color",
-                        TextColor=Color.Black,
                         FontAttributes=FontAttributes.Bold,
                         VerticalOptions=LayoutOptions.CenterAndExpand,
                         HorizontalOptions=LayoutOptions.StartAndExpand,
@@ -185,10 +178,7 @@ namespace LightYourHearth.Views
             var switchUi = new Switch()
             {
                 IsToggled = arg.Value == string.Empty ? bool.Parse(arg.DefaultValue) : bool.Parse(arg.Value),
-                HorizontalOptions = LayoutOptions.FillAndExpand,
-                ThumbColor = Color.DodgerBlue,
-                OnColor = Color.FromHex("#7cbbf2"),
-                BackgroundColor = Color.White
+                HorizontalOptions = LayoutOptions.FillAndExpand
             };
             switchUi.Toggled += (sender, args) =>
             {
@@ -209,7 +199,6 @@ namespace LightYourHearth.Views
                                 new Label()
                                 {
                                     Text=$"{arg.GetDisplayName()}",
-                                    TextColor=Color.Black,
                                     FontAttributes=FontAttributes.Bold,
                                     VerticalOptions=LayoutOptions.Start,
                                     HorizontalOptions=LayoutOptions.Start,

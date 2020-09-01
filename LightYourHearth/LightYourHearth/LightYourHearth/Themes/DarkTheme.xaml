@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Color x:Key="Primary">Pink</Color>
+    <Color x:Key="Primary1">#e0e0e0</Color>
+    <Color x:Key="Primary2">#555555</Color>
+    <Color x:Key="Primary3">#333333</Color>
+    <Color x:Key="Primary4">#222222</Color>
+    <Color x:Key="Secondary1">#bb86fc</Color>
+    <Color x:Key="Accent1">#ffb2ff</Color>
+    <Color x:Key="Accent2">#ea80fc</Color>
+    <Color x:Key="Accent3">#b64fc8</Color>    
+    
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource Primary1}"></Setter>
+        <Setter Property="VisualStateManager.VisualStateGroups">
+            <VisualStateGroupList>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{DynamicResource Primary2}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                    <VisualState x:Name="Disabled">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{DynamicResource Primary3}" />
+                        </VisualState.Setters>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateGroupList>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="ThumbColor" Value="{DynamicResource Accent2}"></Setter>
+        <Setter Property="MinimumTrackColor" Value="{DynamicResource Accent1}"></Setter>
+        <Setter Property="MaximumTrackColor" Value="{DynamicResource Primary1}"></Setter>
+    </Style>
+
+    <Style TargetType="Label">
+        <Setter Property="TextColor" Value="{DynamicResource Primary1}"></Setter>
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{DynamicResource Primary1}"></Setter>
+    </Style>
+
+    <Style TargetType="Switch">
+        <Setter Property="OnColor" Value="{DynamicResource Accent1}"></Setter>
+        <Setter Property="ThumbColor" Value="{DynamicResource Accent2}"></Setter>
+    </Style>
+</ResourceDictionary>

@@ -4,13 +4,8 @@
              x:Class="LightYourHearth.Views.BluetoothConfigurationPage"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
              xmlns:model="clr-namespace:LightYourHearth.Models"
-             Title="{Binding Title}">
-
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Color x:Key="Accent">#96d1ff</Color>
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource Primary4}">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Plug In"
@@ -39,19 +34,17 @@
                                 <Label Grid.Row="0"
                                    Grid.Column="0"
                                    Text="{Binding BluetoothDevice.Name}"
-                                   FontAttributes="Bold"
-                                   TextColor="Black" />
+                                   FontAttributes="Bold" />
                                 <Label Grid.Row="1"
                                    Grid.Column="0"
                                    Text="{Binding BluetoothDevice.Address}"
-                                   TextColor="Black"
                                    VerticalOptions="End" />
                                 <Image Grid.Row="0" Grid.RowSpan="2"
                                        Grid.Column="3"
                                        HeightRequest="16"
                                        WidthRequest="16"
                                        Scale="0.75"
-                                       Source="plug_in.png"
+                                       Source="plug_in_dark.png"
                                        IsVisible="{Binding IsConnected}" />
                             </Grid>
                         </ViewCell>

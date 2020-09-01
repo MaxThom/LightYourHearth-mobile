@@ -5,7 +5,8 @@
              xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
              xmlns:vm="clr-namespace:LightYourHearth.ViewModels"
              xmlns:model="clr-namespace:LightYourHearth.Models"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BackgroundColor="{DynamicResource Primary4}">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout x:Name="ParamLayout" Padding="0,5,0,0">
