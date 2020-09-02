@@ -26,7 +26,7 @@ namespace LightYourHearth.ViewModels
             _bluetoothComm.OnBluetoothConnected += _bluetoothComm_OnBluetoothConnected;
             _bluetoothComm.OnBluetoothDisconnected += _bluetoothComm_OnBluetoothDisconnected;
 
-            BluetoothConnectionIconCommand = new Command(async () => await ConnectToLastDeviceAsync());
+            BluetoothConnectionIconCommand = new Command(async () => await OnBluetoothConnectionTap());
         }
 
         private void _bluetoothComm_OnBluetoothDisconnected(object sender, EventArgs e)
@@ -97,9 +97,21 @@ namespace LightYourHearth.ViewModels
 
         #endregion INotifyPropertyChanged
 
-        private async Task ConnectToLastDeviceAsync()
+        private async Task OnBluetoothConnectionTap()
         {
             if (BluetoothConnectionIcon.Equals("plug_out.png"))
+            {
+                await ConnectToLastDeviceAsync();
+            }
+            else if (BluetoothConnectionIcon.Equals("plug_in.png"))
+            {
+                await _bluetoothComm.CloseBluetoothConnectionAsync();
+            }
+        }
+
+        public async Task ConnectToLastDeviceAsync()
+        {
+            if (!_bluetoothComm.IsDeviceListening)
             {
                 var device = _bluetoothComm.GetPairedDevices().Where(x => x.Address.Equals(_settingsService.BluetoothConfiguration.DeviceMacAddress)).FirstOrDefault();
                 if (device != null)
@@ -109,10 +121,6 @@ namespace LightYourHearth.ViewModels
                 }
                 else
                     Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage($"No device paired.", ToastLength.Long));
-            }
-            else if (BluetoothConnectionIcon.Equals("plug_in.png"))
-            {
-                await _bluetoothComm.CloseBluetoothConnectionAsync();
             }
         }
 

@@ -42,17 +42,8 @@ namespace LightYourHearth.ViewModels
             AnimationCommand = new Command<LedAnimation>(OnLedAnimationTap);
             AnimationEditCommand = new Command<LedAnimation>(OnLedAnimationEditTap, (x) => x.HasArguments);
 
-            //_serverService.AnimationCapabilities.ForEach(x => AnimationList.Add(x));
-
             _bluetoothComm.OnBluetoothDisconnected += _bluetoothComm_OnBluetoothDisconnected;
             _serverService.OnNewAnimationDiscovered += _serverService_OnNewAnimationDiscovered;
-
-            var device = _bluetoothComm.GetPairedDevices().Where(x => x.Address.Equals(_settingsService.BluetoothConfiguration.DeviceMacAddress)).FirstOrDefault();
-            if (device != null)
-            {
-                Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage($"Connecting to {device.Name}...", ToastLength.Long));
-                _bluetoothComm.CreateBluetoothConnectionAsync(device);
-            }
         }
 
         private void _bluetoothComm_OnBluetoothDisconnected(object sender, EventArgs e)

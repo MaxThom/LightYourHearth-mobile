@@ -1,11 +1,6 @@
 ﻿using DLToolkit.Forms.Controls;
 
-using ImageCircle.Forms.Plugin.Abstractions;
-
 using LightYourHearth.ViewModels;
-
-using System;
-using System.Collections.Generic;
 
 using Xamarin.Forms;
 
@@ -21,6 +16,12 @@ namespace LightYourHearth.Views
             FlowListView.Init();
             vm = new AnimationViewModel();
             BindingContext = vm;
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            _ = vm.ConnectToLastDeviceAsync();
         }
     }
 }
