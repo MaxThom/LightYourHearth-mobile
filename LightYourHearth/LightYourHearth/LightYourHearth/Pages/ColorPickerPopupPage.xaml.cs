@@ -15,11 +15,12 @@ namespace LightYourHearth.Pages
     public partial class ColorPickerPopupPage : PopupPage
     {
         private Action<Color> _callback;
+        private bool _isRGBW;
 
         private List<string> preselectedColors = new List<string>()
         {
             "#FF000000",
-            "#00000000",
+            "#FFFFFFFF",
             "#FF0000FF",
             "#FFFF0000",
             "#FF00FF00",
@@ -30,10 +31,11 @@ namespace LightYourHearth.Pages
             "#FF4B0082"
         };
 
-        public ColorPickerPopupPage(Action<Color> callback, Color initialColor)
+        public ColorPickerPopupPage(Action<Color> callback, Color initialColor, bool isRGBW = false)
         {
             InitializeComponent();
             _callback = callback;
+            _isRGBW = isRGBW;
             ColorWheel.SelectedColor = new Color(initialColor.R, initialColor.G, initialColor.B, initialColor.A);
 
             var tapGest = new TapGestureRecognizer();
@@ -66,7 +68,10 @@ namespace LightYourHearth.Pages
         public void CircleButton_Pressed(object sender, EventArgs e)
         {
             var picker = (CircleImage)sender;
-            ColorWheel.SelectedColor = picker.FillColor;
+            if (picker.FillColor.ToHex().Equals("#FFFFFFFF") && _isRGBW)
+                ColorWheel.SelectedColor = Color.FromHex("#00000000");
+            else
+                ColorWheel.SelectedColor = picker.FillColor;
         }
     }
 }

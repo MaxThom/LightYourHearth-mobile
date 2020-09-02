@@ -143,10 +143,21 @@ namespace LightYourHearth.Views
                 var page = new ColorPickerPopupPage((color) =>
                 {
                     Console.WriteLine($"{color.R}-{color.G}-{color.B}-{color.A}");
-                    colorBtn.BackgroundColor = color;
-                    colorBtn.Text = color.ToHex();
+                    if (color.ToHex().Equals("#00000000"))
+                    {
+                        colorBtn.BackgroundColor = Color.FromHex("#FFFFFFFF");
+                        colorBtn.Text = "#FF000000";
+                    }
+                    else
+                    {
+                        colorBtn.BackgroundColor = color;
+                        colorBtn.Text = color.ToHex();
+                    }
+
                     vm.UpdateAnimationArgument(arg.Name, color.ToHex());
-                }, Color.FromHex(arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}"));
+                },
+                Color.FromHex(arg.Value == string.Empty ? $"{arg.DefaultValue}" : $"{arg.Value}"),
+                vm.IsRGBW());
 
                 await PopupNavigation.Instance.PushAsync(page);
             };
