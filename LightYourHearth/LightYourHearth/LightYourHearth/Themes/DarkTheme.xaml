@@ -9,8 +9,8 @@
     <Color x:Key="Secondary1">#bb86fc</Color>
     <Color x:Key="Accent1">#ffb2ff</Color>
     <Color x:Key="Accent2">#ea80fc</Color>
-    <Color x:Key="Accent3">#b64fc8</Color>    
-    
+    <Color x:Key="Accent3">#b64fc8</Color>
+
     <Style TargetType="Button">
         <Setter Property="TextColor" Value="{DynamicResource Primary1}"></Setter>
         <Setter Property="VisualStateManager.VisualStateGroups">

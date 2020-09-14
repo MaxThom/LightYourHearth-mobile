@@ -40,6 +40,22 @@ namespace LightYourHearth.Views
             InitializeComponent();
             vm = new EditAnimationViewModel();
             BindingContext = vm;
+
+            ToolbarItem item = new ToolbarItem
+            {
+                Text = "Reset values",
+                Order = ToolbarItemOrder.Secondary,
+                Priority = 0
+            };
+            item.Clicked += OnItemClicked;
+            this.ToolbarItems.Add(item);
+        }
+
+        private void OnItemClicked(object sender, EventArgs e)
+        {
+            vm.SetArgumentsToDefault();
+            ParamLayout.Children.Clear();
+            GenerateLayout();
         }
 
         private void GenerateLayout()

@@ -38,6 +38,15 @@ namespace LightYourHearth.Models
             arg.Value = argValue;
         }
 
+        public void SetArgumentsToDefault()
+        {
+            foreach (var arg in Arguments)
+            {
+                arg.Value = arg.DefaultValue;
+                Preferences.Set($"{Name}-{arg.Name}", arg.Value);
+            }
+        }
+
         public override string ToString()
         {
             var argStr = string.Empty;

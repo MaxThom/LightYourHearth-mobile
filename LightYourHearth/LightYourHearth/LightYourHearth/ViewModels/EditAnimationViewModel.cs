@@ -29,6 +29,11 @@ namespace LightYourHearth.ViewModels
             ledAnimation.SetAndSaveArgument(argName, argValue);
         }
 
+        public void SetArgumentsToDefault()
+        {
+            ledAnimation.SetArgumentsToDefault();
+        }
+
         public bool IsRGBW()
         {
             return _settingsService.LedConfiguration.LedType.Equals("SK6812");
