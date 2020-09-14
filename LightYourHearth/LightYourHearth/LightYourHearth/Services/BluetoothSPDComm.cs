@@ -101,6 +101,7 @@ namespace LightYourHearth.Services
         {
             try
             {
+                message = $"&{message}";
                 uint messageLength = (uint)message.Length;
                 byte[] buffer = Encoding.UTF8.GetBytes(message);
 
