@@ -31,9 +31,10 @@ namespace LightYourHearth.Services
             AnimationCapabilities?.Clear();
         }
 
-        private async void _bluetoothComm_OnBluetoothConnected(object sender, EventArgs e)
+        private async void _bluetoothComm_OnBluetoothConnected(object sender, string deviceName)
         {
             // 1. Send led settings
+            _settingsService.LedConfiguration.LoadFromLocalStorage(deviceName);
             _bluetoothComm.SendMessageAsync($"Led_Settings:{_settingsService.LedConfiguration.ToConfigurationString()}");
             await Task.Delay(100);
             // 2. Ask for animation capabilities

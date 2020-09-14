@@ -13,7 +13,7 @@ namespace LightYourHearth.Services
 
         event EventHandler<string> OnMessageReceived;
 
-        event EventHandler OnBluetoothConnected;
+        event EventHandler<string> OnBluetoothConnected;
 
         event EventHandler OnBluetoothDisconnected;
 
@@ -24,7 +24,5 @@ namespace LightYourHearth.Services
         void SendMessageAsync(string message);
 
         Task CloseBluetoothConnectionAsync();
-
-        void print();
     }
 }

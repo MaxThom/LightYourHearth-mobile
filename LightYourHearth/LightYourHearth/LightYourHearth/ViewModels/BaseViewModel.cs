@@ -35,7 +35,7 @@ namespace LightYourHearth.ViewModels
             Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage("Device disconnected", ToastLength.Long));
         }
 
-        private void _bluetoothComm_OnBluetoothConnected(object sender, EventArgs e)
+        private void _bluetoothComm_OnBluetoothConnected(object sender, string e)
         {
             BluetoothConnectionIcon = "plug_in.png";
             Device.BeginInvokeOnMainThread(() => CrossToastPopUp.Current.ShowToastMessage("Device connected", ToastLength.Long));

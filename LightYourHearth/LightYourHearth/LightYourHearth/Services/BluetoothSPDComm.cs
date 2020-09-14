@@ -27,20 +27,12 @@ namespace LightYourHearth.Services
 
         public event EventHandler<string> OnMessageReceived;
 
-        public event EventHandler OnBluetoothConnected;
+        public event EventHandler<string> OnBluetoothConnected;
 
         public event EventHandler OnBluetoothDisconnected;
 
         public BluetoothSPDComm()
         {
-            test++;
-        }
-
-        private static int test = 0;
-
-        public void print()
-        {
-            Console.WriteLine(test);
         }
 
         public List<BluetoothDevice> GetPairedDevices()
@@ -55,6 +47,8 @@ namespace LightYourHearth.Services
         {
             try
             {
+                if (IsDeviceListening)
+                    await CloseBluetoothConnectionAsync();
                 socket = device.CreateRfcommSocketToServiceRecord(UUID.FromString(TARGET_UUID));
                 await socket.ConnectAsync();
 
@@ -69,7 +63,7 @@ namespace LightYourHearth.Services
                     });
                     bluetoothListen.Start();
                     Console.WriteLine("Connection successful!");
-                    OnBluetoothConnected?.Invoke(this, null);
+                    OnBluetoothConnected?.Invoke(this, SelectedDevice.Name);
                     return true;
                 }
             }

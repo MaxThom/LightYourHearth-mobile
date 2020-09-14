@@ -20,7 +20,7 @@ namespace LightYourHearth.Services
             LoadConfigurations();
         }
 
-        private void _bluetoothComm_OnBluetoothConnected(object sender, System.EventArgs e)
+        private void _bluetoothComm_OnBluetoothConnected(object sender, string e)
         {
             BluetoothConfiguration.DeviceName = _bluetoothComm.SelectedDevice.Name;
             BluetoothConfiguration.DeviceMacAddress = _bluetoothComm.SelectedDevice.Address;

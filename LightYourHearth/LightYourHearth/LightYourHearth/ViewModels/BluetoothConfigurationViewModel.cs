@@ -1,8 +1,10 @@
 ﻿using Android.Bluetooth;
 
 using LightYourHearth.Services;
+
 using Plugin.Toast;
 using Plugin.Toast.Abstractions;
+
 using System;
 using System.Collections.ObjectModel;
 
@@ -27,7 +29,7 @@ namespace LightYourHearth.ViewModels
             LoadItemsCommand = new Command(() => ExecuteLoadItemsCommand());
             ItemTapped = new Command<BluetoothDeviceDisplay>(OnDeviceSelectedAsync);
 
-            _bluetoothComm.OnBluetoothConnected += (object sender, EventArgs e) => ExecuteLoadItemsCommand();
+            _bluetoothComm.OnBluetoothConnected += (object sender, string e) => ExecuteLoadItemsCommand();
             _bluetoothComm.OnBluetoothDisconnected += (object sender, EventArgs e) => ExecuteLoadItemsCommand();
 
             ExecuteLoadItemsCommand();

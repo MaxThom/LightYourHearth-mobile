@@ -48,8 +48,8 @@ namespace LightYourHearth.ViewModels
         {
             Title = "Led Configuration";
 
-            SelectedLedCount = _settingsService.LedConfiguration.LedPixelCount;
-            SelectedLedStrip = _settingsService.LedConfiguration.LedType;
+            _selectedLedCount = _settingsService.LedConfiguration.LedPixelCount;
+            _selectedLedStrip = _settingsService.LedConfiguration.LedType;
 
             for (int i = 1; i <= 1000; i++)
                 LedCountOption.Add(i);
@@ -57,13 +57,13 @@ namespace LightYourHearth.ViewModels
 
         private void OnLedStripSelection(string value)
         {
-            _settingsService.LedConfiguration.LedType = value;
+            _settingsService.LedConfiguration.SaveLedType(value, _settingsService.BluetoothConfiguration.DeviceName);
             _bluetoothComm.SendMessageAsync($"Led_Settings:{_settingsService.LedConfiguration.ToConfigurationString()}");
         }
 
         private void OnLedCountSelection(int value)
         {
-            _settingsService.LedConfiguration.LedPixelCount = value;
+            _settingsService.LedConfiguration.SaveLedCount(value, _settingsService.BluetoothConfiguration.DeviceName);
             _bluetoothComm.SendMessageAsync($"Led_Settings:{_settingsService.LedConfiguration.ToConfigurationString()}");
         }
     }
